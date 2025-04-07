@@ -207,6 +207,7 @@ function validatePassword() {
   }
 
   return isValid;
-}
+  
+});
 
 
