@@ -3,33 +3,47 @@
   Date Created: 2025-02-026
   Date Updated: 2025-02-028
   Purpose: Redisplay/validate data from a form*/
-
-function validateName(input) {
-    const pattern = /^[a-zA-Z][a-zA-Z0-9_-]{4,29}$/;
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
+// Validate First Name
+function validateFirstName(input) {
+    const value = input.value;
+    if (value === "") {
+        input.setCustomValidity("First name cannot be empty.");
+    } else if (/[^a-zA-Z]/.test(value)) {
+        input.setCustomValidity("First name must contain only letters.");
+    } else if (value.length < 2) {
+        input.setCustomValidity("First name must be at least 2 characters long.");
+    } else if (value.length > 30) {
+        input.setCustomValidity("First name cannot be longer than 30 characters.");
     } else {
-        input.style.borderColor = "red";
+        input.setCustomValidity(""); // Valid input
     }
 }
 
-// Function to validate the middle name
+// Validate Middle Name
 function validateMiddleName(input) {
-    const pattern = /^[A-Za-z]?$/; // Matches a single letter or empty string
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
+    const value = input.value;
+    if (value !== "" && /[^a-zA-Z]/.test(value)) {
+        input.setCustomValidity("Middle name must contain only letters.");
+    } else if (value.length > 30) {
+        input.setCustomValidity("Middle name cannot be longer than 30 characters.");
     } else {
-        input.style.borderColor = "red";
+        input.setCustomValidity(""); // Valid input
     }
 }
 
-// Function to validate the last name
+// Validate Last Name
 function validateLastName(input) {
-    const pattern = /^[A-Za-z'\-0-9]{1,30}$/; // Matches letters, apostrophes, dashes, and numbers
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
+    const value = input.value;
+    if (value === "") {
+        input.setCustomValidity("Last name cannot be empty.");
+    } else if (/[^a-zA-Z]/.test(value)) {
+        input.setCustomValidity("Last name must contain only letters.");
+    } else if (value.length < 2) {
+        input.setCustomValidity("Last name must be at least 2 characters long.");
+    } else if (value.length > 30) {
+        input.setCustomValidity("Last name cannot be longer than 30 characters.");
     } else {
-        input.style.borderColor = "red";
+        input.setCustomValidity(""); // Valid input
     }
 }
 
