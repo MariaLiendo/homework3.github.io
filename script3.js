@@ -4,7 +4,9 @@
   Date Updated: 2025-02-028
   Purpose: Redisplay/validate data from a form*/
 
+// Function to validate the password and confirm password fields
 function reviewForm() {
+    // Get input values
     const firstName = document.getElementById("first_name").value;
     const middleName = document.getElementById("middle_name").value;
     const lastName = document.getElementById("last-name").value;
@@ -20,50 +22,44 @@ function reviewForm() {
     const symptoms = document.getElementById("symptoms").value;
     const healthLevel = document.getElementById("health").value;
 
-    
-    let gender = getSelectedGender();
-    const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
-    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
-    document.getElementById("review-section").style.display = 'block';
-}
-
-function getSelectedGender() {
+    // Get selected gender
+    let gender = "";
     if (document.getElementById("male").checked) {
-        return "Male";
+        gender = "Male";
     } else if (document.getElementById("female").checked) {
-        return "Female";
+        gender = "Female";
     } else if (document.getElementById("other").checked) {
-        return "Other";
+        gender = "Other";
     }
-    return "";
-}
 
+    // Format address
+    const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
 
-function updateReviewSection(firstName, lastName, dob, ssn, gender, address, email, phone, symptoms, healthLevel) {
-    document.getElementById("review_name").textContent = `${firstName} ${lastName}`;
+    // Review the form data and show a preview
+    document.getElementById("review_name").textContent = firstName + ' ' + lastName;
     document.getElementById("review_dob").textContent = dob;
     document.getElementById("review_ssn").textContent = ssn;
     document.getElementById("review_gender").textContent = gender;
-    document.getElementById("review_address").textContent = address;
+    document.getElementById("review_address").textContent = fullAddress;
     document.getElementById("review_email").textContent = email;
-    document.getElementById("review_phone_number").textContent = phone;
+    document.getElementById("review_phone_number").textContent = phone_number;
     document.getElementById("review_symptoms").textContent = symptoms;
     document.getElementById("review_health").textContent = healthLevel;
-}
 
+    // Display the review section
+    document.getElementById("review-section").style.display = 'block';
+}
 
 function validateForm() {
     let password = document.getElementById('password').value;
     let rePassword = document.getElementById('re-password').value;
 
-    
+    // Password validation
     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
-
     if (!password.match(passwordRegex)) {
         alert("Password must be at least 8 characters long, contain an upper case letter, a digit, and a special character.");
         return false;
     }
-
     if (password !== rePassword) {
         alert("Passwords do not match.");
         return false;
@@ -72,22 +68,15 @@ function validateForm() {
     return true;
 }
 
+// Password check on form submit
 document.getElementById('patient-form').addEventListener('submit', function(event) {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('re-password').value;
 
+    // Check if passwords match
     if (password !== confirmPassword) {
+        // Prevent form submission
         event.preventDefault();
         alert("Passwords do not match. Please try again.");
     }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById("health");
-    const output = document.getElementById("health-value");
-    output.textContent = slider.value;
-
-    slider.addEventListener("input", function() {
-        output.textContent = slider.value;
-    });
 });
