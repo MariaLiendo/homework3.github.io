@@ -166,12 +166,14 @@
                 <tr>
                     <td><label for="password">Password:</label></td>
                     <td><input type="password" id="password" name="password" required title="Please enter your password and ensure it is secure."> <span id="password-error" class="error-msg"></span>
+                        <button onclick="togglePassword('password')">Show/Hide</button>
                 </td>
 
                 </tr>
                 <tr>
                     <td><label for="re-password">Confirm Password:</label></td>
-                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."><span id="confirm-password-error" class="error-msg"></span></td>
+                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."><span id="confirm-password-error" class="error-msg"></span>
+                    <button onclick="togglePassword('confirmPassword')">Show/Hide</button> </td>
                 </tr>
                 <tr>
                     <td><button type="submit">Submit</button></td>
