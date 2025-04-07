@@ -47,7 +47,7 @@ function validateLastName(input) {
     }
 }
 
-// Function to validate the email
+// Validate Email
 function validateEmail(input) {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (pattern.test(input.value)) {
@@ -57,7 +57,7 @@ function validateEmail(input) {
     }
 }
 
-// Function to validate the phone number
+// Validate Phone Number
 function validatePhone(input) {
     const pattern = /^\(\d{3}\) \d{3}-\d{4}$/; // Matches (XXX) XXX-XXXX format
     if (pattern.test(input.value)) {
@@ -67,10 +67,10 @@ function validatePhone(input) {
     }
 }
 
-// Function to review the form and trigger real-time validation
+// Review the Form and Trigger Real-time Validation
 function reviewForm() {
-    // Trigger real-time validation for the name fields
-    validateName(document.getElementById("first_name"));
+    // Trigger real-time validation for all fields
+    validateFirstName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
@@ -83,7 +83,7 @@ function reviewForm() {
     const dob = document.getElementById("dob").value;
     const ssn = document.getElementById("ssn").value;
     const email = document.getElementById("email").value;
-    const phone_number = document.getElementById("Phone_Number").value;
+    const phoneNumber = document.getElementById("Phone_Number").value;
     const address1 = document.getElementById("address1").value;
     const address2 = document.getElementById("address2").value;
     const city = document.getElementById("city").value;
@@ -91,16 +91,18 @@ function reviewForm() {
     const zip = document.getElementById("zip").value;
     const symptoms = document.getElementById("symptoms").value;
     const healthLevel = document.getElementById("health").value;
+    const gender = getSelectedGender();
 
-    let gender = getSelectedGender();
     const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
-    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
+    
+    // Update the review section with collected data
+    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phoneNumber, symptoms, healthLevel);
 
     // Show the review section
     document.getElementById("review-section").style.display = 'block';
 }
 
-// Function to get the selected gender
+// Get Selected Gender
 function getSelectedGender() {
     if (document.getElementById("male").checked) {
         return "Male";
@@ -112,7 +114,7 @@ function getSelectedGender() {
     return "";
 }
 
-// Function to update the review section
+// Update the Review Section with Collected Data
 function updateReviewSection(firstName, lastName, dob, ssn, gender, address, email, phone, symptoms, healthLevel) {
     document.getElementById("review_name").textContent = `${firstName} ${lastName}`;
     document.getElementById("review_dob").textContent = dob;
@@ -125,15 +127,14 @@ function updateReviewSection(firstName, lastName, dob, ssn, gender, address, ema
     document.getElementById("review_health").textContent = healthLevel;
 }
 
-// Function to validate the form before submission
+// Validate the Form Before Submission
 function validateForm() {
     let password = document.getElementById('password').value;
     let rePassword = document.getElementById('re-password').value;
-
     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
 
     if (!password.match(passwordRegex)) {
-        alert("Password must be at least 8 characters long, contain an upper case letter, a digit, and a special character.");
+        alert("Password must be at least 8 characters long, contain an uppercase letter, a digit, and a special character.");
         return false;
     }
 
@@ -142,8 +143,8 @@ function validateForm() {
         return false;
     }
 
-    // Trigger real-time validation before submitting the form
-    validateName(document.getElementById("first_name"));
+    // Trigger real-time validation before form submission
+    validateFirstName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
@@ -159,15 +160,16 @@ function validateForm() {
     return true;
 }
 
+// Toggle Password Visibility
 function togglePassword(fieldId) {
-  const input = document.getElementById(fieldId);
-  const type = input.getAttribute("type");
+    const input = document.getElementById(fieldId);
+    const type = input.getAttribute("type");
 
-  // Toggle the type between password and text
-  input.setAttribute("type", type === "password" ? "text" : "password");
+    // Toggle the input type between 'password' and 'text'
+    input.setAttribute("type", type === "password" ? "text" : "password");
 }
 
-// Event listener to ensure passwords match before submission
+// Ensure Passwords Match Before Form Submission
 document.getElementById('patient-form').addEventListener('submit', function(event) {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('re-password').value;
@@ -178,7 +180,7 @@ document.getElementById('patient-form').addEventListener('submit', function(even
     }
 });
 
-// Event listener for the health slider to show real-time updates
+// Event Listener for Health Slider
 document.addEventListener("DOMContentLoaded", function() {
     const slider = document.getElementById("health");
     const output = document.getElementById("health-value");
