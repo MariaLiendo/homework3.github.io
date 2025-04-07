@@ -51,6 +51,17 @@ function validateLastName(input) {
     }
 }
 
+function validateDOB(input) {
+    const today = new Date();
+    const dob = new Date(input.value);
+    const age = today.getFullYear() - dob.getFullYear();
+    if (dob > today || age > 120) {
+        showError(input, "Invalid date of birth. Must be within a valid range.");
+    } else {
+        removeError(input);
+    }
+}
+
 // Function to validate the email
 function validateEmail(input) {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
