@@ -47,7 +47,7 @@ function validateLastName(input) {
     }
 }
 
-// Validate Email
+// Function to validate the email
 function validateEmail(input) {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (pattern.test(input.value)) {
@@ -57,7 +57,7 @@ function validateEmail(input) {
     }
 }
 
-// Validate Phone Number
+// Function to validate the phone number
 function validatePhone(input) {
     const pattern = /^\(\d{3}\) \d{3}-\d{4}$/; // Matches (XXX) XXX-XXXX format
     if (pattern.test(input.value)) {
@@ -67,10 +67,10 @@ function validatePhone(input) {
     }
 }
 
-// Review the Form and Trigger Real-time Validation
+// Function to review the form and trigger real-time validation
 function reviewForm() {
-    // Trigger real-time validation for all fields
-    validateFirstName(document.getElementById("first_name"));
+    // Trigger real-time validation for the name fields
+    validateName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
@@ -83,7 +83,7 @@ function reviewForm() {
     const dob = document.getElementById("dob").value;
     const ssn = document.getElementById("ssn").value;
     const email = document.getElementById("email").value;
-    const phoneNumber = document.getElementById("Phone_Number").value;
+    const phone_number = document.getElementById("Phone_Number").value;
     const address1 = document.getElementById("address1").value;
     const address2 = document.getElementById("address2").value;
     const city = document.getElementById("city").value;
@@ -91,18 +91,16 @@ function reviewForm() {
     const zip = document.getElementById("zip").value;
     const symptoms = document.getElementById("symptoms").value;
     const healthLevel = document.getElementById("health").value;
-    const gender = getSelectedGender();
 
-    const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
-    
-    // Update the review section with collected data
-    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phoneNumber, symptoms, healthLevel);
+    let gender = getSelectedGender();
+    const fullAddress = ${address1}, ${address2}, ${city}, ${state} ${zip};
+    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
 
     // Show the review section
     document.getElementById("review-section").style.display = 'block';
 }
 
-// Get Selected Gender
+// Function to get the selected gender
 function getSelectedGender() {
     if (document.getElementById("male").checked) {
         return "Male";
@@ -114,9 +112,9 @@ function getSelectedGender() {
     return "";
 }
 
-// Update the Review Section with Collected Data
+// Function to update the review section
 function updateReviewSection(firstName, lastName, dob, ssn, gender, address, email, phone, symptoms, healthLevel) {
-    document.getElementById("review_name").textContent = `${firstName} ${lastName}`;
+    document.getElementById("review_name").textContent = ${firstName} ${lastName};
     document.getElementById("review_dob").textContent = dob;
     document.getElementById("review_ssn").textContent = ssn;
     document.getElementById("review_gender").textContent = gender;
@@ -127,14 +125,15 @@ function updateReviewSection(firstName, lastName, dob, ssn, gender, address, ema
     document.getElementById("review_health").textContent = healthLevel;
 }
 
-// Validate the Form Before Submission
+// Function to validate the form before submission
 function validateForm() {
     let password = document.getElementById('password').value;
     let rePassword = document.getElementById('re-password').value;
-    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
+
+    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,~]).{8,30}$/;
 
     if (!password.match(passwordRegex)) {
-        alert("Password must be at least 8 characters long, contain an uppercase letter, a digit, and a special character.");
+        alert("Password must be at least 8 characters long, contain an upper case letter, a digit, and a special character.");
         return false;
     }
 
@@ -143,8 +142,8 @@ function validateForm() {
         return false;
     }
 
-    // Trigger real-time validation before form submission
-    validateFirstName(document.getElementById("first_name"));
+    // Trigger real-time validation before submitting the form
+    validateName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
@@ -160,16 +159,15 @@ function validateForm() {
     return true;
 }
 
-// Toggle Password Visibility
 function togglePassword(fieldId) {
-    const input = document.getElementById(fieldId);
-    const type = input.getAttribute("type");
+  const input = document.getElementById(fieldId);
+  const type = input.getAttribute("type");
 
-    // Toggle the input type between 'password' and 'text'
-    input.setAttribute("type", type === "password" ? "text" : "password");
+  // Toggle the type between password and text
+  input.setAttribute("type", type === "password" ? "text" : "password");
 }
 
-// Ensure Passwords Match Before Form Submission
+// Event listener to ensure passwords match before submission
 document.getElementById('patient-form').addEventListener('submit', function(event) {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('re-password').value;
@@ -180,7 +178,7 @@ document.getElementById('patient-form').addEventListener('submit', function(even
     }
 });
 
-// Event Listener for Health Slider
+// Event listener for the health slider to show real-time updates
 document.addEventListener("DOMContentLoaded", function() {
     const slider = document.getElementById("health");
     const output = document.getElementById("health-value");
