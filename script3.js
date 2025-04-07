@@ -175,13 +175,17 @@ function validateForm() {
 }
 
 // Event listener to ensure passwords match before submission
-document.getElementById('patient-form').addEventListener('submit', function(event) {
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('re-password').value;
+document.getElementById("password").addEventListener("input", function () {
+    const password = this.value;
+    const errorSpan = document.getElementById("password-error");
 
-    if (password !== confirmPassword) {
-        event.preventDefault();
-        alert("Passwords do not match. Please try again.");
+    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!strongPassword.test(password)) {
+        errorSpan.textContent = "Password must be 8+ chars, include upper/lowercase, a number, and a symbol.";
+    } else {
+        errorSpan.textContent = "";
     }
 });
+
 
