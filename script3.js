@@ -175,17 +175,38 @@ function validateForm() {
 }
 
 // Event listener to ensure passwords match before submission
-document.getElementById("password").addEventListener("input", function () {
-    const password = this.value;
-    const errorSpan = document.getElementById("password-error");
+function validatePassword() {
+  const userId = document.getElementById("user_id").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("re-password").value;
 
-    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordError = document.getElementById("password-error");
+  const confirmError = document.getElementById("confirm-password-error");
 
-    if (!strongPassword.test(password)) {
-        errorSpan.textContent = "Password must be 8+ chars, include upper/lowercase, a number, and a symbol.";
-    } else {
-        errorSpan.textContent = "";
-    }
-});
+  let isValid = true;
+
+  // Reset previous errors
+  passwordError.textContent = "";
+  confirmError.textContent = "";
+
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+  if (!passwordRegex.test(password)) {
+    passwordError.textContent = "Password must be at least 8 characters, include uppercase, lowercase, and a digit.";
+    isValid = false;
+  }
+
+  if (password === userId) {
+    passwordError.textContent += " Password cannot be the same as your Username.";
+    isValid = false;
+  }
+
+  if (password !== confirmPassword) {
+    confirmError.textContent = "Passwords do not match.";
+    isValid = false;
+  }
+
+  return isValid;
+}
 
 
