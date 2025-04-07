@@ -6,7 +6,7 @@
 
 // Function to validate the first name
 function validateName(input) {
-    const regex = /^[a-zA-Z'-]+$/;  // Letters, apostrophes, dashes only
+    const regex = /^[a-zA-Z'-]+$/;
     if (!regex.test(input.value)) {
         showError(input, "Invalid name. Only letters, apostrophes, and dashes are allowed.");
     } else {
@@ -14,6 +14,7 @@ function validateName(input) {
     }
 }
 
+// Function to show an error message
 function showError(input, message) {
     let errorElement = input.nextElementSibling;
     if (!errorElement || !errorElement.classList.contains("error")) {
@@ -24,6 +25,7 @@ function showError(input, message) {
     errorElement.textContent = message;
 }
 
+// Function to remove an error message
 function removeError(input) {
     let errorElement = input.nextElementSibling;
     if (errorElement && errorElement.classList.contains("error")) {
@@ -31,26 +33,19 @@ function removeError(input) {
     }
 }
 
-// Function to validate the middle name
+// Validate middle name (only 1 letter or blank)
 function validateMiddleName(input) {
-    const pattern = /^[A-Za-z]?$/; // Matches a single letter or empty string
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
-    } else {
-        input.style.borderColor = "red";
-    }
+    const pattern = /^[A-Za-z]?$/;
+    input.style.borderColor = pattern.test(input.value) ? "green" : "red";
 }
 
-// Function to validate the last name
+// Validate last name
 function validateLastName(input) {
-    const pattern = /^[A-Za-z'\-0-9]{1,30}$/; // Matches letters, apostrophes, dashes, and numbers
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
-    } else {
-        input.style.borderColor = "red";
-    }
+    const pattern = /^[A-Za-z'\-0-9]{1,30}$/;
+    input.style.borderColor = pattern.test(input.value) ? "green" : "red";
 }
 
+// Validate date of birth
 function validateDOB(input) {
     const today = new Date();
     const dob = new Date(input.value);
@@ -62,36 +57,59 @@ function validateDOB(input) {
     }
 }
 
-// Function to validate the email
+// Validate email
 function validateEmail(input) {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
-    } else {
-        input.style.borderColor = "red";
-    }
+    input.style.borderColor = pattern.test(input.value) ? "green" : "red";
 }
 
-// Function to validate the phone number
+// Validate phone number (XXX) XXX-XXXX
 function validatePhone(input) {
-    const pattern = /^\(\d{3}\) \d{3}-\d{4}$/; // Matches (XXX) XXX-XXXX format
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
-    } else {
-        input.style.borderColor = "red";
-    }
+    const pattern = /^\(\d{3}\) \d{3}-\d{4}$/;
+    input.style.borderColor = pattern.test(input.value) ? "green" : "red";
 }
 
-// Function to review the form and trigger real-time validation
+// Validate password fields in real-time
+function validatePassword() {
+    const userId = document.getElementById("user_id").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("re-password").value;
+
+    const passwordError = document.getElementById("password-error");
+    const confirmError = document.getElementById("confirm-password-error");
+
+    let isValid = true;
+    passwordError.textContent = "";
+    confirmError.textContent = "";
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
+
+    if (!passwordRegex.test(password)) {
+        passwordError.textContent = "Password must be 8–30 characters, include uppercase, lowercase, number, and special character.";
+        isValid = false;
+    }
+
+    if (password === userId) {
+        passwordError.textContent += " Password cannot be the same as your Username.";
+        isValid = false;
+    }
+
+    if (password !== confirmPassword) {
+        confirmError.textContent = "Passwords do not match.";
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Review form and display info in a summary section
 function reviewForm() {
-    // Trigger real-time validation for the name fields
     validateName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
     validatePhone(document.getElementById("Phone_Number"));
 
-    // Collect form values
     const firstName = document.getElementById("first_name").value;
     const middleName = document.getElementById("middle_name").value;
     const lastName = document.getElementById("last-name").value;
@@ -111,23 +129,18 @@ function reviewForm() {
     const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
     updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
 
-    // Show the review section
     document.getElementById("review-section").style.display = 'block';
 }
 
-// Function to get the selected gender
+// Get selected gender radio button
 function getSelectedGender() {
-    if (document.getElementById("male").checked) {
-        return "Male";
-    } else if (document.getElementById("female").checked) {
-        return "Female";
-    } else if (document.getElementById("other").checked) {
-        return "Other";
-    }
+    if (document.getElementById("male").checked) return "Male";
+    if (document.getElementById("female").checked) return "Female";
+    if (document.getElementById("other").checked) return "Other";
     return "";
 }
 
-// Function to update the review section
+// Update the review section with collected data
 function updateReviewSection(firstName, lastName, dob, ssn, gender, address, email, phone, symptoms, healthLevel) {
     document.getElementById("review_name").textContent = `${firstName} ${lastName}`;
     document.getElementById("review_dob").textContent = dob;
@@ -140,15 +153,15 @@ function updateReviewSection(firstName, lastName, dob, ssn, gender, address, ema
     document.getElementById("review_health").textContent = healthLevel;
 }
 
-// Function to validate the form before submission
+// Final form validation before submission
 function validateForm() {
     let password = document.getElementById('password').value;
     let rePassword = document.getElementById('re-password').value;
 
-    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,`~]).{8,30}$/;
 
     if (!password.match(passwordRegex)) {
-        alert("Password must be at least 8 characters long, contain an upper case letter, a digit, and a special character.");
+        alert("Password must meet security criteria.");
         return false;
     }
 
@@ -157,14 +170,12 @@ function validateForm() {
         return false;
     }
 
-    // Trigger real-time validation before submitting the form
     validateName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last-name"));
     validateEmail(document.getElementById("email"));
     validatePhone(document.getElementById("Phone_Number"));
 
-    // Check if any input is invalid
     const invalidInputs = document.querySelectorAll('input:invalid');
     if (invalidInputs.length > 0) {
         alert("Please correct the highlighted fields before submitting.");
@@ -174,40 +185,10 @@ function validateForm() {
     return true;
 }
 
-// Event listener to ensure passwords match before submission
-function validatePassword() {
-  const userId = document.getElementById("user_id").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("re-password").value;
-
-  const passwordError = document.getElementById("password-error");
-  const confirmError = document.getElementById("confirm-password-error");
-
-  let isValid = true;
-
-  // Reset previous errors
-  passwordError.textContent = "";
-  confirmError.textContent = "";
-
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-  if (!passwordRegex.test(password)) {
-    passwordError.textContent = "Password must be at least 8 characters, include uppercase, lowercase, and a digit.";
-    isValid = false;
-  }
-
-  if (password === userId) {
-    passwordError.textContent += " Password cannot be the same as your Username.";
-    isValid = false;
-  }
-
-  if (password !== confirmPassword) {
-    confirmError.textContent = "Passwords do not match.";
-    isValid = false;
-  }
-
-  return isValid;
-  
+// Real-time password validation on input
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("password").addEventListener("input", validatePassword);
+    document.getElementById("re-password").addEventListener("input", validatePassword);
 });
 
 
