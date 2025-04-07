@@ -145,6 +145,14 @@ function validateForm() {
     return true;
 }
 
+function togglePassword(fieldId) {
+  const input = document.getElementById(fieldId);
+  const type = input.getAttribute("type");
+
+  // Toggle the type between password and text
+  input.setAttribute("type", type === "password" ? "text" : "password");
+}
+
 // Event listener to ensure passwords match before submission
 document.getElementById('patient-form').addEventListener('submit', function(event) {
     var password = document.getElementById('password').value;
