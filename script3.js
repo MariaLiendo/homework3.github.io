@@ -185,14 +185,3 @@ document.getElementById('patient-form').addEventListener('submit', function(even
     }
 });
 
-// Event listener for the health slider to show real-time updates
-document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById("health");
-    const output = document.getElementById("health-value");
-    output.textContent = slider.value;
-
-    slider.addEventListener("input", function() {
-        output.textContent = slider.value;
-    });
-});
-
