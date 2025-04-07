@@ -31,14 +31,14 @@
         <td><label for="first_name">First Name:</label></td>
         <td><input type="text" id="first_name" name="first_name" pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters." oninput="validateName(this)"></td>
         <td><label for="middle_name">Middle Name:</label></td>
-        <td><input type="text" id="middle_name" name="middle_name" pattern="[A-Za-z]?" title="1 character, letters only (blank/null is ok)." oninput="validateMiddleName(this)"></td>
+        <td><input type="text" id="middle_name" name="middle_name" pattern="[A-Za-z]?" title="1 character, letters only (blank/null is ok)" oninput="validateMiddleName(this)."></td>
         <td><label for="last-name">Last Name:</label></td>
         <td><input type="text" id="last-name" name="last-name" pattern="[A-Za-z'\-0-9]{1,30}" required title="1 to 30 characters. Letters, apostrophes, numbers 2 to 5 (e.g., '3rd'), and dashes only." oninput="validateLastName(this)"></td>    
     </tr>
 
     <tr>
         <td><label for="dob">Date of Birth:</label></td>
-        <td><input type="date" id="dob" name="dob" max="2025-03-04" min="1905-03-03" required title="Please select your birth date."></td>
+        <td><input type="date" id="dob" name="dob"  onblur="validateDOB(this) max="2025-03-04" min="1905-03-03" required title="Please select your birth date."></td>
         <td><label for="ssn">SSN:</label></td>
         <td><input type="text" id="ssn" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX" required title="Please enter your Social Security Number in the format XXX-XX-XXXX."></td>
         <td><label>Gender:</label></td>
