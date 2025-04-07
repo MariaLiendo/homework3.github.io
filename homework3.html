@@ -161,7 +161,7 @@
             <table>
                 <tr>
                     <td><label for="user_id">Username:</label></td>
-                    <td><input type="text" id="user_id" name="user_id"  pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores."></td>
+                    <td><input type="text" id="user_id" name="user_id"  pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores."><span id="user_id-error" class="error-msg"></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
@@ -171,7 +171,7 @@
                 </tr>
                 <tr>
                     <td><label for="re-password">Confirm Password:</label></td>
-                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."></td>
+                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."><span id="confirm-password-error" class="error-msg"></span></td>
                 </tr>
                 <tr>
                     <td><button type="submit">Submit</button></td>
