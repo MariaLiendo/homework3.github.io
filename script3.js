@@ -195,3 +195,4 @@ document.addEventListener("DOMContentLoaded", function() {
         output.textContent = slider.value;
     });
 });
+
