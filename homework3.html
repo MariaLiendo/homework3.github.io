@@ -158,31 +158,38 @@
             </table>
 
             <h2>Complete Patient Portal</h2>
-            <table>
-                <tr>
-                    <td><label for="user_id">Username:</label></td>
-                    <td><input type="text" id="user_id" name="user_id"  pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores."><span id="user_id-error" class="error-msg"></td>
-                </tr>
-                <tr>
-                    <td><label for="password">Password:</label></td>
-                    <td><input type="password" id="password" name="password" required title="Please enter your password and ensure it is secure."> <span id="password-error" class="error-msg"></span>
-                        <button onclick="togglePassword('password')">Show/Hide</button>
-                </td>
-
-                </tr>
-                <tr>
-                    <td><label for="re-password">Confirm Password:</label></td>
-                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."><span id="confirm-password-error" class="error-msg"></span>
-                    <button onclick="togglePassword('confirmPassword')">Show/Hide</button> </td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Submit</button></td>
-                <tr>
-                    <td><button type="button" onclick="reviewForm()">Review</button></td>
-                </tr>
-                    <td><button type="reset">Reset</button></td>
-                </tr>
-            </table>  
+         <table>
+    <tr>
+        <td><label for="user_id">Username:</label></td>
+        <td><input type="text" id="user_id" name="user_id" pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores.">
+        <span id="user_id-error" class="error-msg"></span></td>
+    </tr>
+    <tr>
+        <td><label for="password">Password:</label></td>
+        <td>
+            <input type="password" id="password" name="password" required title="Please enter your password and ensure it is secure.">
+            <span id="password-error" class="error-msg"></span>
+            <button type="button" onclick="togglePassword('password')">Show/Hide</button>
+        </td>
+    </tr>
+    <tr>
+        <td><label for="re-password">Confirm Password:</label></td>
+        <td>
+            <input type="password" id="re-password" name="re-password" required title="Re-enter your password to confirm.">
+            <span id="confirm-password-error" class="error-msg"></span>
+            <button type="button" onclick="togglePassword('re-password')">Show/Hide</button>
+        </td>
+    </tr>
+    <tr>
+        <td><button type="submit">Submit</button></td>
+    </tr>
+    <tr>
+        <td><button type="button" onclick="reviewForm()">Review</button></td>
+    </tr>
+    <tr>
+        <td><button type="reset">Reset</button></td>
+    </tr>
+</table> 
         </form>
 
        <div id="review-section">
@@ -249,6 +256,18 @@
         window.location.href = "thankyou.html"; 
     });
 </script>
+
+<script>
+    // Function to toggle visibility of password fields
+    function togglePassword(fieldId) {
+        const input = document.getElementById(fieldId);
+        const type = input.getAttribute("type");
+
+        // Toggle the type between password and text
+        input.setAttribute("type", type === "password" ? "text" : "password");
+    }
+</script>
+    
 
 <script>
     document.addEventListener("DOMContentLoaded", function() { 
