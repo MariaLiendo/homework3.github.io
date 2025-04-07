@@ -6,11 +6,28 @@
 
 // Function to validate the first name
 function validateName(input) {
-    const pattern = /^[a-zA-Z][a-zA-Z0-9_-]{4,29}$/;
-    if (pattern.test(input.value)) {
-        input.style.borderColor = "green";
+    const regex = /^[a-zA-Z'-]+$/;  // Letters, apostrophes, dashes only
+    if (!regex.test(input.value)) {
+        showError(input, "Invalid name. Only letters, apostrophes, and dashes are allowed.");
     } else {
-        input.style.borderColor = "red";
+        removeError(input);
+    }
+}
+
+function showError(input, message) {
+    let errorElement = input.nextElementSibling;
+    if (!errorElement || !errorElement.classList.contains("error")) {
+        errorElement = document.createElement("div");
+        errorElement.classList.add("error");
+        input.parentNode.appendChild(errorElement);
+    }
+    errorElement.textContent = message;
+}
+
+function removeError(input) {
+    let errorElement = input.nextElementSibling;
+    if (errorElement && errorElement.classList.contains("error")) {
+        errorElement.remove();
     }
 }
 
