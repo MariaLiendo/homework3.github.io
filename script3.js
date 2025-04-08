@@ -11,7 +11,7 @@ function reviewForm() {
     validateMiddleName(document.getElementById("middle_name"));
     validateLastName(document.getElementById("last_name"));
     validateEmail(document.getElementById("email"));
-    validatePhone(document.getElementById("phone_Number"));
+    validatePhone(document.getElementById("phone_number"));
 
     // Collect form values
     const firstName = document.getElementById("first_name").value;
@@ -20,7 +20,7 @@ function reviewForm() {
     const dob = document.getElementById("dob").value;
     const ssn = document.getElementById("ssn").value;
     const email = document.getElementById("email").value;
-    const phone_number = document.getElementById("phone_Number").value;
+    const phone_number = document.getElementById("phone_number").value;
     const address1 = document.getElementById("address1").value;
     const address2 = document.getElementById("address2").value;
     const city = document.getElementById("city").value;
