@@ -3,6 +3,52 @@
   Date Created: 2025-02-026
   Date Updated: 2025-02-028
   Purpose: Redisplay/validate data from a form*/
+
+// Function to validate the password and confirm password fields
+function reviewForm() {
+    // Get input values
+    const firstName = document.getElementById("first_name").value;
+    const middleName = document.getElementById("middle_name").value;
+    const lastName = document.getElementById("last-name").value;
+    const dob = document.getElementById("dob").value;
+    const ssn = document.getElementById("ssn").value;
+    const email = document.getElementById("email").value;
+    const phone_number = document.getElementById("Phone_Number").value;
+    const address1 = document.getElementById("address1").value;
+    const address2 = document.getElementById("address2").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zip = document.getElementById("zip").value;
+    const symptoms = document.getElementById("symptoms").value;
+    const healthLevel = document.getElementById("health").value;
+
+    // Get selected gender
+    let gender = "";
+    if (document.getElementById("male").checked) {
+        gender = "Male";
+    } else if (document.getElementById("female").checked) {
+        gender = "Female";
+    } else if (document.getElementById("other").checked) {
+        gender = "Other";
+    }
+
+    // Format address
+    const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
+
+    // Review the form data and show a preview
+    document.getElementById("review_name").textContent = firstName + ' ' + lastName;
+    document.getElementById("review_dob").textContent = dob;
+    document.getElementById("review_ssn").textContent = ssn;
+    document.getElementById("review_gender").textContent = gender;
+    document.getElementById("review_address").textContent = fullAddress;
+    document.getElementById("review_email").textContent = email;
+    document.getElementById("review_phone_number").textContent = phone_number;
+    document.getElementById("review_symptoms").textContent = symptoms;
+    document.getElementById("review_health").textContent = healthLevel;
+
+    // Display the review section
+    document.getElementById("review-section").style.display = 'block';
+  
 // Validate First Name
 function validateFirstName(input) {
     const value = input.value;
@@ -101,74 +147,6 @@ function validatePhone(input) {
     }
 }
 
-// Function to review the form and trigger real-time validation
-function reviewForm() {
-    // Get input values
-    const firstName = document.getElementById("first_name").value;
-    const middleName = document.getElementById("middle_name").value;
-    const lastName = document.getElementById("last-name").value;
-    const dob = document.getElementById("dob").value;
-    const ssn = document.getElementById("ssn").value;
-    const email = document.getElementById("email").value;
-    const phone_number = document.getElementById("Phone_Number").value;
-    const address1 = document.getElementById("address1").value;
-    const address2 = document.getElementById("address2").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const zip = document.getElementById("zip").value;
-    const symptoms = document.getElementById("symptoms").value;
-    const healthLevel = document.getElementById("health").value;
-
-    let gender = getSelectedGender();
-    const fullAddress = ${address1}, ${address2}, ${city}, ${state} ${zip};
-    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
-
-  // Review the form data and show a preview
-    document.getElementById("review_name").textContent = firstName + ' ' + lastName;
-    document.getElementById("review_dob").textContent = dob;
-    document.getElementById("review_ssn").textContent = ssn;
-    document.getElementById("review_gender").textContent = gender;
-    document.getElementById("review_address").textContent = fullAddress;
-    document.getElementById("review_email").textContent = email;
-    document.getElementById("review_phone_number").textContent = phone_number;
-    document.getElementById("review_symptoms").textContent = symptoms;
-    document.getElementById("review_health").textContent = healthLevel;
-
-    // Display the review section
-    document.getElementById("review-section").style.display = 'block';
-}
-
-// Function to get the selected gender
-function getSelectedGender() {
-    if (document.getElementById("male").checked) {
-        return "Male";
-    } else if (document.getElementById("female").checked) {
-        return "Female";
-    } else if (document.getElementById("other").checked) {
-        return "Other";
-    }
-    return "";
-}
-
-// Function to update the review section
-function updateReviewSection(firstName, lastName, dob, ssn, gender, address, email, phone, symptoms, healthLevel) {
-    document.getElementById("review_name").textContent = ${firstName} ${lastName};
-    document.getElementById("review_dob").textContent = dob;
-    document.getElementById("review_ssn").textContent = ssn;
-    document.getElementById("review_gender").textContent = gender;
-    document.getElementById("review_address").textContent = address;
-    document.getElementById("review_email").textContent = email;
-    document.getElementById("review_phone_number").textContent = phone;
-    document.getElementById("review_symptoms").textContent = symptoms;
-    document.getElementById("review_health").textContent = healthLevel;
-}
-
-    // Trigger real-time validation before submitting the form
-    validateName(document.getElementById("first_name"));
-    validateMiddleName(document.getElementById("middle_name"));
-    validateLastName(document.getElementById("last-name"));
-    validateEmail(document.getElementById("email"));
-    validatePhone(document.getElementById("Phone_Number"));
 
     // Check if any input is invalid
     const invalidInputs = document.querySelectorAll('input:invalid');
