@@ -197,22 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const day = String(today.getDate()).padStart(2, '0');
     const maxDate = `${year}-${month}-${day}`;
     dobInput.setAttribute("max", maxDate);
-
-    // Real-time password match validation
-    const passwordInput = document.getElementById("password");
-    const confirmPasswordInput = document.getElementById("re-password");
-    const confirmPasswordError = document.getElementById("confirm-password-error");
-
-    function checkPasswordMatch() {
-        if (confirmPasswordInput.value !== passwordInput.value) {
-            confirmPasswordError.textContent = "Passwords do not match.";
-            confirmPasswordInput.setCustomValidity("Passwords do not match.");
-        } else {
-            confirmPasswordError.textContent = "";
-            confirmPasswordInput.setCustomValidity("");
-        }
-    }
-
-    passwordInput.addEventListener("input", checkPasswordMatch);
-    confirmPasswordInput.addEventListener("input", checkPasswordMatch);
+//pasw
+   function validate();{
+var x= getElementByName("password");
+var y= getElementByName("confirm_password");
+if(x==y) return;
+else alert("password not same");
 });
