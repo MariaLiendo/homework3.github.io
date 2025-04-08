@@ -178,13 +178,41 @@ document.getElementById('patient-form').addEventListener('submit', function(even
     }
 });
 
-// Event listener for the health slider to show real-time updates
-document.addEventListener("DOMContentLoaded", function() {
+// Event listener for DOMContentLoaded (slider, max DOB date, and password matching)
+document.addEventListener("DOMContentLoaded", function () {
+    // Health slider display
     const slider = document.getElementById("health");
     const output = document.getElementById("health-value");
     output.textContent = slider.value;
 
-    slider.addEventListener("input", function() {
+    slider.addEventListener("input", function () {
         output.textContent = slider.value;
     });
+
+    // Set max date for DOB to today
+    const dobInput = document.getElementById("dob");
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const maxDate = `${year}-${month}-${day}`;
+    dobInput.setAttribute("max", maxDate);
+
+    // Real-time password match validation
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("re-password");
+    const confirmPasswordError = document.getElementById("confirm-password-error");
+
+    function checkPasswordMatch() {
+        if (confirmPasswordInput.value !== passwordInput.value) {
+            confirmPasswordError.textContent = "Passwords do not match.";
+            confirmPasswordInput.setCustomValidity("Passwords do not match.");
+        } else {
+            confirmPasswordError.textContent = "";
+            confirmPasswordInput.setCustomValidity("");
+        }
+    }
+
+    passwordInput.addEventListener("input", checkPasswordMatch);
+    confirmPasswordInput.addEventListener("input", checkPasswordMatch);
 });
