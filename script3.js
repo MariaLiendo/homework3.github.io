@@ -215,15 +215,4 @@ document.addEventListener("DOMContentLoaded", function () {
     const maxDate = `${year}-${month}-${day}`;
     dobInput.setAttribute("max", maxDate);
 //pasw
-  function validate() {
-    var x = document.getElementById("password").value;
-    var y = document.getElementById("re_password").value;
-
-    if (x === y) {
-        // Passwords match
-        return true;
-    } else {
-        alert("Passwords do not match.");
-        return false;
-    }
 });
