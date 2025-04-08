@@ -43,7 +43,7 @@
                title="Only letters are allowed for the middle name (1 to 30 characters, blank is okay)." 
                oninput="validateMiddleName(this)"></td>
       
-        <td><label for="last-name">Last Name:</label></td>
+        <td><label for="last_name">Last Name:</label></td>
         <td><input type="text" id="last_name" name="last_name" 
                pattern="[A-Za-z]{2,30}" required 
                title="Enter a valid last name (only letters, 2 to 30 characters)."></td>    
@@ -142,8 +142,8 @@
         <td><input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required title="Enter a valid email address." oninput="validateEmail(this)"></td>
     </tr> 
     <tr>
-        <td><label for="phone_Number">Phone Number:</label></td>
-        <td><input type="tel" id="phone_Number" name="phone_Number" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(000) 000-0000" required title="Enter your phone number in the format (XXX) XXX-XXXX." oninput="validatePhone(this)"></td>
+        <td><label for="phone_number">Phone Number:</label></td>
+        <td><input type="tel" id="phone_number" name="phone_number" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(000) 000-0000" required title="Enter your phone number in the format (XXX) XXX-XXXX." oninput="validatePhone(this)"></td>
     </tr> 
 </table>
 
