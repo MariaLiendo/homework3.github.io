@@ -184,26 +184,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const maxDate = `${year}-${month}-${day}`;
     dobInput.setAttribute("max", maxDate);
 //obscure ssn
- function formatAndMaskSSN(input) {
-    let value = input.value.replace(/\D/g, ''); // Remove all non-digit characters
-
-    if (value.length > 9) value = value.slice(0, 9); // Limit to 9 digits
-
-    // Format the SSN with dashes (XXX-XX-XXXX)
-    let formattedSSN = value.replace(/(\d{3})(\d{0,2})(\d{0,4})/, function(_, p1, p2, p3) {
-        let result = p1;
-        if (p2) result += '-' + p2;
-        if (p3) result += '-' + p3;
-        return result;
-    });
-
-    // Mask the SSN (e.g. ***-**-1234) while typing
-    let maskedSSN = '***-**-' + formattedSSN.slice(-4); // Show only the last 4 digits
-
-    // Update the display with the masked SSN
-    document.getElementById('ssn-display').value = maskedSSN;
-
-    // Keep the original SSN in the hidden password field
-    input.value = formattedSSN; // This stores the full SSN
+function obscureSSN(ssn) {
+    return ssn.replace(/\d{3}-\d{2}-\d{4}/, 'XXX-XX-XXXX');
 }
+
+const ssn = "123-45-6789";
+console.log(obscureSSN(ssn)); // Output: "XXX-XX-XXXX"
 });
