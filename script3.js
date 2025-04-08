@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //pasw
   function validate() {
     var x = document.getElementById("password").value;
-    var y = document.getElementById("confirm_password").value;
+    var y = document.getElementById("re_password").value;
 
     if (x === y) {
         // Passwords match
