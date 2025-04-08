@@ -183,5 +183,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const day = String(today.getDate()).padStart(2, '0');
     const maxDate = `${year}-${month}-${day}`;
     dobInput.setAttribute("max", maxDate);
-//pasw
+//obscure ssn
+  function formatSSN(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove non-digits
+
+    if (value.length > 9) value = value.slice(0, 9); // Limit to 9 digits
+
+    // Format as XXX-XX-XXXX
+    const formatted = value.replace(/(\d{3})(\d{0,2})(\d{0,4})/, function(_, p1, p2, p3) {
+        let result = p1;
+        if (p2) result += '-' + p2;
+        if (p3) result += '-' + p3;
+        return result;
+    });
+
+    input.value = formatted;
+}
 });
