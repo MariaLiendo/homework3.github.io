@@ -18,7 +18,41 @@ function validateFirstName(input) {
         input.setCustomValidity(""); // Valid input
     }
 }
+//pasw
+function validatePasswords() {
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("re_password");
 
+    if (password.value !== confirmPassword.value) {
+        confirmPassword.setCustomValidity("Passwords do not match.");
+        confirmPassword.reportValidity(); // Show the error
+        return false;
+    } else {
+        confirmPassword.setCustomValidity(""); // Clear the error
+        return true;
+    }
+}
+
+// Your main validate function
+function validate() {
+    // Call existing validations
+    if (!validateFirstName()) return false;
+    // Add all other validations...
+
+    // Add the password match check here ⬇️
+    if (!validatePasswords()) return false;
+
+    return true; // if all validations pass
+}
+
+// Real-time password match feedback (optional but recommended)
+document.addEventListener("DOMContentLoaded", function() {
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("re_password");
+
+    confirmPassword.addEventListener("input", validatePasswords);
+    password.addEventListener("input", validatePasswords);
+//});
 // Validate Middle Name
 function validateMiddleName(input) {
     const value = input.value;
