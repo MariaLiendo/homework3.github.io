@@ -53,7 +53,7 @@
         <td><label for="dob">Date of Birth:</label></td>
         <td><input type="date" id="dob" name="dob"  onblur="validateDOB(this) max="2025-03-04" min="1905-03-03" required title="Please select your birth date."></td>
         <td><label for="ssn">SSN:</label></td>
-        <td><input type="text" id="ssn" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX" required title="Please enter your Social Security Number in the format XXX-XX-XXXX."></td>
+        <td><input type="text" id="ssn" name="ssn" maxlength="11" oninput="formatSSN(this)" placeholder="XXX-XX-XXXX" required title="Please enter your Social Security Number in the format XXX-XX-XXXX."></td>
         <td><label>Gender:</label></td>
         <td>
             <input type="radio" id="male" name="gender" value="male" title="Select your gender as Male."> Male
