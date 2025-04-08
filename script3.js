@@ -125,23 +125,6 @@ function updateReviewSection(firstName, lastName, dob, ssn, gender, address, ema
     document.getElementById("review_health").textContent = healthLevel;
 }
 
-// Function to validate the form before submission
-function validateForm() {
-    let password = document.getElementById('password').value;
-    let rePassword = document.getElementById('re-password').value;
-
-    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=<>.,~]).{8,30}$/;
-
-    if (!password.match(passwordRegex)) {
-        alert("Password must be at least 8 characters long, contain an upper case letter, a digit, and a special character.");
-        return false;
-    }
-
-    if (password !== rePassword) {
-        alert("Passwords do not match.");
-        return false;
-    }
-
     // Trigger real-time validation before submitting the form
     validateName(document.getElementById("first_name"));
     validateMiddleName(document.getElementById("middle_name"));
