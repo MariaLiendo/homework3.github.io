@@ -103,14 +103,7 @@ function validatePhone(input) {
 
 // Function to review the form and trigger real-time validation
 function reviewForm() {
-    // Trigger real-time validation for the name fields
-    validateName(document.getElementById("first_name"));
-    validateMiddleName(document.getElementById("middle_name"));
-    validateLastName(document.getElementById("last-name"));
-    validateEmail(document.getElementById("email"));
-    validatePhone(document.getElementById("Phone_Number"));
-
-    // Collect form values
+    // Get input values
     const firstName = document.getElementById("first_name").value;
     const middleName = document.getElementById("middle_name").value;
     const lastName = document.getElementById("last-name").value;
@@ -130,7 +123,18 @@ function reviewForm() {
     const fullAddress = ${address1}, ${address2}, ${city}, ${state} ${zip};
     updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
 
-    // Show the review section
+  // Review the form data and show a preview
+    document.getElementById("review_name").textContent = firstName + ' ' + lastName;
+    document.getElementById("review_dob").textContent = dob;
+    document.getElementById("review_ssn").textContent = ssn;
+    document.getElementById("review_gender").textContent = gender;
+    document.getElementById("review_address").textContent = fullAddress;
+    document.getElementById("review_email").textContent = email;
+    document.getElementById("review_phone_number").textContent = phone_number;
+    document.getElementById("review_symptoms").textContent = symptoms;
+    document.getElementById("review_health").textContent = healthLevel;
+
+    // Display the review section
     document.getElementById("review-section").style.display = 'block';
 }
 
