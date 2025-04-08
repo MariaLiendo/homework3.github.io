@@ -4,9 +4,16 @@
   Date Updated: 2025-02-028
   Purpose: Redisplay/validate data from a form*/
 
-// Function to validate the password and confirm password fields
+// Function to review the form and trigger real-time validation
 function reviewForm() {
-    // Get input values
+    // Trigger real-time validation for the name fields
+    validateFirstName(document.getElementById("first_name"));
+    validateMiddleName(document.getElementById("middle_name"));
+    validateLastName(document.getElementById("last_name"));
+    validateEmail(document.getElementById("email"));
+    validatePhone(document.getElementById("phone_Number"));
+
+    // Collect form values
     const firstName = document.getElementById("first_name").value;
     const middleName = document.getElementById("middle_name").value;
     const lastName = document.getElementById("last_name").value;
@@ -22,31 +29,11 @@ function reviewForm() {
     const symptoms = document.getElementById("symptoms").value;
     const healthLevel = document.getElementById("health").value;
 
-    // Get selected gender
-    let gender = "";
-    if (document.getElementById("male").checked) {
-        gender = "Male";
-    } else if (document.getElementById("female").checked) {
-        gender = "Female";
-    } else if (document.getElementById("other").checked) {
-        gender = "Other";
-    }
-
-    // Format address
+    let gender = getSelectedGender();
     const fullAddress = `${address1}, ${address2}, ${city}, ${state} ${zip}`;
+    updateReviewSection(firstName, lastName, dob, ssn, gender, fullAddress, email, phone_number, symptoms, healthLevel);
 
-    // Review the form data and show a preview
-    document.getElementById("review_name").textContent = firstName + ' ' + lastName;
-    document.getElementById("review_dob").textContent = dob;
-    document.getElementById("review_ssn").textContent = ssn;
-    document.getElementById("review_gender").textContent = gender;
-    document.getElementById("review_address").textContent = fullAddress;
-    document.getElementById("review_email").textContent = email;
-    document.getElementById("review_phone_number").textContent = phone_number;
-    document.getElementById("review_symptoms").textContent = symptoms;
-    document.getElementById("review_health").textContent = healthLevel;
-
-    // Display the review section
+    // Show the review section
     document.getElementById("review-section").style.display = 'block';
   
 // Validate First Name
