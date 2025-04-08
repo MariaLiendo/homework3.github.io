@@ -33,7 +33,9 @@
         <td> <input type="text" id="first_name" name="first_name" 
                pattern="[A-Za-z]{2,30}" required 
                title="Enter a valid first name (only letters, 2 to 30 characters)." 
-               oninput="validateName(this)"></td>
+               oninput="validateName(this)"
+               oninvalid="alert('You must fill out the form!');"></td>
+        
       
         <td><label for="middle_name">Middle Name:</label></td>
         <td><input type="text" id="middle_name" name="middle_name" 
