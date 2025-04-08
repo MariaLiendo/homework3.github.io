@@ -9,11 +9,11 @@ function reviewForm() {
     // Get input values
     const firstName = document.getElementById("first_name").value;
     const middleName = document.getElementById("middle_name").value;
-    const lastName = document.getElementById("last-name").value;
+    const lastName = document.getElementById("last_name").value;
     const dob = document.getElementById("dob").value;
     const ssn = document.getElementById("ssn").value;
     const email = document.getElementById("email").value;
-    const phone_number = document.getElementById("Phone_Number").value;
+    const phone_number = document.getElementById("phone_Number").value;
     const address1 = document.getElementById("address1").value;
     const address2 = document.getElementById("address2").value;
     const city = document.getElementById("city").value;
