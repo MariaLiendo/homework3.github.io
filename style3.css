@@ -1,5 +1,5 @@
-/*Name:  Maria Liendo
-    File: homework2.html 
+ /*Name:  Maria Liendo
+    File: homework3.html 
     Date Created: 2025-02-26
     Date Updated: 2025-03-05
     Purpose: MIS 3371 Homework2 CSS for a Review Registration form*/
@@ -26,7 +26,7 @@
     }
     
     h1 {
-        color: rgb(0, 0, 0);
+        color: rgb(8, 1, 5);
         text-align: center;
         font-size: 23px;
         margin: 0;
@@ -56,6 +56,7 @@
     table {
         width: 100%;
         margin-bottom: 20px;
+        box-shadow: 0 4px 8px #591538;
     }
     
     label {
@@ -75,13 +76,14 @@
     button {
         font-family: Georgia;
         padding: 5px 15px;
-        background-color: #5a9bf6;
+        background-color: #ff006fac;
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         font-size: 14px;
         text-align: center; 
+
     }
     
     button[type="reset"] {
@@ -89,6 +91,11 @@
         color: rgb(3, 3, 4);
     }
     
+    button:hover[type="button"] {
+        background-color: #ff006fac;
+        color: rgb(3, 3, 4);
+        opacity: 0.6;
+    }
     #review-section {
         display: none;
         width: 80%;
@@ -98,7 +105,7 @@
         border: 2px solid #ff99cc;
         border-radius: 10px;
         background-color: #fff;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 10px #ea1780;
         text-align: center;
     }
     
@@ -173,3 +180,29 @@
         width: 100px;
         height: auto;
     }
+
+    #flowerimage {
+        position: fixed;
+        bottom: 50px; /* Adjust based on the footer height */
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Center the image horizontally */
+        opacity: 0.5; /* Make the image slightly transparent */
+        z-index: -1; /* Place it behind other content */
+    }
+
+    #fixedImage {
+       width: 100%; /* Adjust the width as needed */
+       max-width: 1200px; /* Optional: limit the size of the image */
+    }
+
+    .validateForm {
+  color: #e63946;         /* a nice red for error */
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
