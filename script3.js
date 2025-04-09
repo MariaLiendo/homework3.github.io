@@ -282,7 +282,7 @@ function validateRepassword(input) {
 
 function submitForm() {
     // Redirect to a new page after successful form submission
-    window.location.href = "./Thank-you.html";
+    window.location.href = "thankyou.html";
 }
 
 // Function to review the form and trigger real-time validation
