@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <!--Name: Maria Liendo
     File: homework3.html  
     Date Created: 2025-02-26
@@ -8,7 +8,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Patient Registration Form</title>
-        <link rel="stylesheet" href="style3.css">
+        <link rel="stylesheet" href="../style2.css">
     </head>
     <body>
         <div class="banner">
@@ -24,36 +24,23 @@
         </div>
 
         <hr>
-        <form action="Homework3.html" onsubmit="validatePasswords()">
+        <form action="Homework3.html" id="myForm" onsubmit="event.preventDefault(); submitForm();">
             <h2>Create Patient Portal</h2>
             <table>
     <tr>
         <td><label for="first_name">First Name:</label></td>
-      
-        <td> <input type="text" id="first_name" name="first_name" 
-               pattern="[A-Za-z]{2,30}" required 
-               title="Enter a valid first name (only letters, 2 to 30 characters)." 
-               oninput="validateName(this)"
-               oninvalid="alert('🌺Please fill out the form🌺');"></td>
-        
-      
+        <td><input type="text" id="first_name" name="first_name" pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a valid first name (only letters, 2 to 30 characters)."  oninput="validateFirstName(this)" oninvalid="alert(🌺Please fill out the form🌺)"></td>
         <td><label for="middle_name">Middle Name:</label></td>
-        <td><input type="text" id="middle_name" name="middle_name" 
-               pattern="[A-Za-z]{1,30}" 
-               title="Only letters are allowed for the middle name (1 to 30 characters, blank is okay)." 
-               oninput="validateMiddleName(this)"></td>
-      
-        <td><label for="last_name">Last Name:</label></td>
-        <td><input type="text" id="last_name" name="last_name" 
-               pattern="[A-Za-z]{2,30}" required 
-               title="Enter a valid last name (only letters, 2 to 30 characters)."></td>    
+        <td><input type="text" id="middle_name" name="middle_name" pattern="[A-Za-z]?" title="1 character, letters only (blank/null is ok)." oninput="validateMiddleName(this)"></td>
+        <td><label for="last-name">Last Name:</label></td>
+        <td><input type="text" id="last-name" name="last-name" pattern="[A-Za-z'\-0-9]{1,30}" required title="1 to 30 characters. Letters, apostrophes, numbers 2 to 5 (e.g., '3rd'), and dashes only." oninput="validateLastName(this)"></td>    
     </tr>
 
     <tr>
         <td><label for="dob">Date of Birth:</label></td>
-        <td><input type="date" id="dob" name="dob"  onblur="validateDOB(this) max="2025-03-04" min="1905-03-03" required title="Please select your birth date."></td>
+        <td><input type="date" id="dob" name="dob"  min="1900-01-01" required title="Please select your birth date." onchange="validateDOB(this)"></td>
         <td><label for="ssn">SSN:</label></td>
-        <td><input type="text" id="ssn" name="ssn" maxlength="11"  oninput= "obscureSSN(this)" placeholder="XXX-XX-XXXX" required title="Please enter your Social Security Number in the format XXX-XX-XXXX."></td>
+        <td><input type="text" id="ssn" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX" required title="Please enter your Social Security Number in the format XXX-XX-XXXX." onblur="handleSSNInput(this)" onfocus="unmaskSSN(this)"> </td>
         <td><label>Gender:</label></td>
         <td>
             <input type="radio" id="male" name="gender" value="male" title="Select your gender as Male."> Male
@@ -67,13 +54,13 @@
 <table>
     <tr>
         <td><label for="address1">Address Line 1:</label></td>
-        <td><input type="text" id="address1" name="address1" maxlength="30" title="Enter your primary address line."></td>
+        <td><input type="text" id="address1" name="address1"  minlength= "2" maxlength="30" required title="Enter your primary address line."></td>
         <td><label for="address2">Address Line 2:</label></td>
-        <td><input type="text" id="address2" name="address2" maxlength="30" title="Enter additional address information (if applicable)."></td>
+        <td><input type="text" id="address2" name="address2" minlength= "2" maxlength="30" title="Enter additional address information (if applicable)."></td>
     </tr>
     <tr>
         <td><label for="city">City:</label></td>
-        <td><input type="text" id="city" name="city" maxlength="30" title="Enter your city of residence."></td>
+        <td><input type="text" id="city" name="city"  minlength= "2" maxlength="30" required title="Enter your city of residence."></td>
         <td><label for="state">State:</label></td>
 
                     <td>
@@ -135,15 +122,15 @@
                 </tr>
                 <tr>
                     <td><label for="zip">Zip Code:</label></td>
-                    <td><input type="text" id="zip" name="zip" pattern="^\d{5}(-\d{4})?$" placeholder="00000" required title="Enter your 5-digit zip code, or a 9-digit code (e.g., 12345-6789)." oninput="validateZip(this)"></td>
+                    <td><input type="text" id="zip" name="zip" pattern="^\d{5}(-\d{4})?$" maxlength="5" placeholder="00000" required title="Enter your 5-digit zip code, or a 9-digit code (e.g., 12345-6789)." oninput="validateZip(this)"></td>
     </tr>
     <tr>
         <td><label for="email">Email:</label></td>
         <td><input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required title="Enter a valid email address." oninput="validateEmail(this)"></td>
     </tr> 
     <tr>
-        <td><label for="phone_number">Phone Number:</label></td>
-        <td><input type="tel" id="phone_number" name="phone_number" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(000) 000-0000" required title="Enter your phone number in the format (XXX) XXX-XXXX." oninput="validatePhone(this)"></td>
+        <td><label for="Phone_Number">Phone Number:</label></td>
+        <td><input type="tel" id="Phone_Number" name="Phone_Number" pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14"placeholder="(000) 000-0000" required title="Enter your phone number in the format (XXX) XXX-XXXX." oninput="validatePhone(this)"></td>
     </tr> 
 </table>
 
@@ -171,38 +158,37 @@
             </table>
 
             <h2>Complete Patient Portal</h2>
-         <table>
-    <tr>
-        <td><label for="user_id">Username:</label></td>
-        <td><input type="text" id="user_id" name="user_id" pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores.">
-        <span id="user_id-error" class="error-msg"></span></td>
-    </tr>
-    <tr>
-
-        <td><label for="password">Password:</label></td>
-        <td>
-            <input type="password" id="password" name="password" required title="Please enter your password and ensure it is secure.">
-           
-        </td>
-    </tr>
-    <tr>
-        <td><label for="re-password">Confirm Password:</label></td>
-        <td>
-            <input type="password" id="re_password" name="re_password" required title="Re-enter your password to confirm.">
+            <table>
+                <tr>
+                    <td><label for="user_id">Username:</label></td>
+                    <td><input type="text" id="user_id" name="user_id"  pattern="[a-zA-Z][a-zA-Z0-9_-]{4,29}" required title="Enter a username with 5 to 30 characters. Can include letters, numbers, dashes, and underscores." oninput="validateUserID(this)" required></td>
+                    <span id="userIdError" class="error_message" style="color: red; font-size: 0.9em;"></span>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="password" required title=" Please enter your password and ensure it is secure." oninput="validatePassword(this)" required></td>
+                <span id="passwordError" class="error_message" style="color: red; font-size: 0.9em;"></span>
+                </tr>
+                <tr>
+                    <td><label for="re-password">Confirm Password:</label></td>
+                    <td><input type="password" id="re-password" name="re-password"  required title="Re-enter your password to confirm."oninput="validateRepassword(this)" required></td>
+                <span id="repasswordError" class="error-message" style="color: red; font-size: 0.9em;"></span>
+                </tr>
+                <tr>
+                    <!--<td><button type="submit">Submit</button></td>-->
+                    <td>  <!-- Validate Button -->
+                      <button type="button" onclick="validateForm()">Validate</button>
+                    </td>
+                    <td>
+                      <button id="submitButton" style="display:none;" type="submit">Submit</button>
+                    </td>
+                <tr>
         
-            
-        </td>
-    </tr>
-    <tr>
-        <td><button type="submit">Submit</button></td>
-    </tr>
-    <tr>
-        <td><button type="button" onclick="reviewForm()">Review</button></td>
-    </tr>
-    <tr>
-        <td><button type="reset">Reset</button></td>
-    </tr>
-</table> 
+                    <td><button type="button" onclick="reviewForm()">Review</button></td>
+                </tr>
+                    <td><button type="reset">Reset</button></td>
+                </tr>
+            </table>  
         </form>
 
        <div id="review-section">
@@ -249,24 +235,27 @@
 </div>
 
 <div class="footer">
-    <img src="Femme logo pink.png" alt="Femme logo pink.png" class="logo">
+    <img src="../Femme_logo_pink.png" alt="Femme Bloom Pink Logo" class="logo">
     <p>Femme Bloom, Houston, Texas, 77204</p>
     <p>How can we help?</p>
     <a href="contact-us.html">Contact Us</a>
 
     <div class="footer-right">
         <div class="social-media">
-            <img src="SocialMedias.png" alt="Social Media Icons" class="media">
+            <img src="../SocialMedias.png" alt="Social Media Icons" class="media">
         </div>
     </div>
 </div>
+<div id="flowerimage">
+        <img src="../Flower_footer.png" alt="Pink Flowers" id="fixedImage">
+    </div>
 
 <script src="./script3.js"></script>
 
 <script>
     document.querySelector("form").addEventListener("submit", function(event) {
         event.preventDefault(); 
-        window.location.href = "thankyou.html"; 
+        window.location.href = "./Thank-you.html"; 
     });
 </script>
 
@@ -277,19 +266,22 @@
         if (form) {  
             form.addEventListener("submit", function(event) {
                 event.preventDefault(); 
-                window.location.href = "thankyou.html"; 
+                window.location.href = "./Thank-you.html"; 
             });
         } else {
             console.error("Form element not found.");
         }
     });
-</script>
+</script> 
 
 <script>
     document.getElementById("health").addEventListener("input", function () {
     document.getElementById("health-value").textContent = this.value;
 });
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
