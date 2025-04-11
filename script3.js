@@ -218,10 +218,10 @@ function validateRepassword(input) {
         errors.push("Phone number should be in the format (XXX) XXX-XXXX.");
     }
 
-    if (ssn && !/^\d{3}-\d{2}-\d{4}$/.test(ssn)) {
+    if (!ssn || !/^\d{3}-\d{2}-\d{4}$/.test(ssn)) {
         errors.push("SSN must be in the format xxx-xx-xxxx.");
     }
-
+//(!ssn || !/^\d{3}-\d{2}-\d{4}$/.test(ssn))
     if (!/^[a-zA-Z0-9_-]{5,30}$/.test(userId)) {
         errors.push("User ID should be between 5 and 30 characters and only contain letters, numbers, dashes, and underscores.");
     }
