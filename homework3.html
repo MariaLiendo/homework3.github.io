@@ -1,8 +1,8 @@
 <!DOCTYPE html> 
 <!--Name: Maria Liendo
     File: homework3.html  
-    Date Created: 2025-02-26
-    Date Updated: 2025-04-07
+    Date Created: 2025-04-07
+    Date Updated: 2025-04-11
     Purpose: MIS 3371 Homework 3 for Patient Registration Form Validation-->
 <html>
     <head>
@@ -175,12 +175,11 @@
                 <span id="repasswordError" class="error-message" style="color: red; font-size: 0.9em;"></span>
                 </tr>
                 <tr>
-                    <!--<td><button type="submit">Submit</button></td>-->
-                    <td>  <!-- Validate Button -->
-                      <button type="button" onclick="validateForm()">Validate</button>
+                    <td>  
+                         <button type="button" onclick="validateForm()">Validate</button>
                     </td>
                     <td>
-                      <button id="submitButton" style="display:none;" type="submit">Submit</button>
+                          <button id="submitButton" style="display:none;" type="submit">Submit</button>
                     </td>
                 <tr>
         
@@ -279,6 +278,5 @@
     document.getElementById("health-value").textContent = this.value;
 });
 </script>
-
 </body>
 </html>
