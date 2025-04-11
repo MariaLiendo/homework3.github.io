@@ -1,8 +1,8 @@
  /*Name:  Maria Liendo
     File: homework3.html 
-    Date Created: 2025-02-26
-    Date Updated: 2025-03-05
-    Purpose: MIS 3371 Homework2 CSS for a Review Registration form*/
+    Date Created: 2025-04-07
+    Date Updated: 2025-04-11
+    Purpose: MIS 3371 Homework3 CSS for a Review Registration form*/
 
     body {
         font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
@@ -183,22 +183,22 @@
 
     #flowerimage {
         position: fixed;
-        bottom: 50px; /* Adjust based on the footer height */
+        bottom: 50px; 
         left: 0;
         width: 100%;
         display: flex;
-        justify-content: center; /* Center the image horizontally */
-        opacity: 0.5; /* Make the image slightly transparent */
-        z-index: -1; /* Place it behind other content */
+        justify-content: center; 
+        opacity: 0.5; 
+        z-index: -1; 
     }
 
     #fixedImage {
-       width: 100%; /* Adjust the width as needed */
-       max-width: 1200px; /* Optional: limit the size of the image */
+       width: 100%;
+       max-width: 1200px;
     }
 
     .validateForm {
-  color: #e63946;         /* a nice red for error */
+  color: #e63946;        
   font-size: 0.85rem;
   font-weight: 500;
   margin-top: 4px;
